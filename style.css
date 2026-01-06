@@ -147,7 +147,7 @@ header {
     text-align: center;
     line-height: 2;
     position: absolute;
-    bottom: 0;
+    top: 100%;
     animation: scrollVertical 30s linear infinite;
 }
 
