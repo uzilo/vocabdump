@@ -122,9 +122,8 @@ function speakWord(word, element) {
     
     // Try to use an English voice
     const voices = window.speechSynthesis.getVoices();
-    const englishVoice = voices.find(voice => 
-        voice.lang.startsWith('en-') && voice.lang.includes('US')
-    ) || voices.find(voice => voice.lang.startsWith('en-'));
+    const englishVoice = voices.find(voice => voice.lang === 'en-US') 
+        || voices.find(voice => voice.lang.startsWith('en-'));
     
     if (englishVoice) {
         utterance.voice = englishVoice;
@@ -154,15 +153,15 @@ function speakWord(word, element) {
 
 // ==================== Speed Control ====================
 /**
- * Updates the animation duration based on slider value
+ * Sets up the speed control slider event listener
  * Slider: 10 (slow) to 100 (fast)
  * Duration: 60s (slow) to 10s (fast)
  */
-function updateScrollSpeed() {
+function setupSpeedControl() {
     const slider = document.getElementById('speed-slider');
     const marqueeContent = document.querySelector('.marquee-content');
     
-    slider.addEventListener('input', (e) => {
+    const handleSpeedChange = (e) => {
         const sliderValue = parseInt(e.target.value);
         
         // Map slider value (10-100) inversely to duration (60s-10s) using linear interpolation
@@ -179,7 +178,9 @@ function updateScrollSpeed() {
         
         // Update aria-valuenow for accessibility
         slider.setAttribute('aria-valuenow', sliderValue);
-    });
+    };
+    
+    slider.addEventListener('input', handleSpeedChange);
 }
 
 // ==================== Initialization ====================
@@ -191,14 +192,14 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeMarquee();
     
     // Setup speed control
-    updateScrollSpeed();
+    setupSpeedControl();
     
     // Load voices for speech synthesis
     // Some browsers load voices asynchronously
-    if (window.speechSynthesis.onvoiceschanged !== undefined) {
-        window.speechSynthesis.onvoiceschanged = () => {
-            // Voices are loaded
-        };
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.addEventListener('voiceschanged', () => {
+            // Voices are loaded and available
+        });
     }
 });
 
