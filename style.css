@@ -349,10 +349,6 @@ footer i {
     .controls {
         margin-bottom: var(--spacing-lg);
     }
-    
-    .word {
-        gap: var(--spacing-md);
-    }
 }
 
 /* ==================== Accessibility - Reduced Motion ==================== */

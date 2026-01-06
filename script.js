@@ -165,12 +165,7 @@ function updateScrollSpeed() {
     slider.addEventListener('input', (e) => {
         const sliderValue = parseInt(e.target.value);
         
-        // Map slider value (10-100) inversely to duration (60s-10s)
-        // Formula: duration = 70 - (sliderValue * 0.5556)
-        // When slider = 10: duration = 70 - 5.556 ≈ 64.4s (let's use 60s)
-        // When slider = 100: duration = 70 - 55.56 ≈ 14.4s (let's use 10s)
-        // Better formula: duration = 65 - (sliderValue * 0.611)
-        // Even better: linear interpolation
+        // Map slider value (10-100) inversely to duration (60s-10s) using linear interpolation
         const minDuration = 10;
         const maxDuration = 60;
         const minSlider = 10;
