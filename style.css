@@ -1,0 +1,386 @@
+/* ==================== CSS Custom Properties ==================== */
+:root {
+    /* Neon Colors */
+    --neon-cyan: #00fff5;
+    --neon-green: #39ff14;
+    --neon-pink: #ff10f0;
+    --neon-blue: #00d4ff;
+    
+    /* Background Colors */
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #1a1a2e;
+    --bg-tertiary: #16213e;
+    
+    /* Grid Pattern */
+    --grid-color: rgba(0, 255, 245, 0.1);
+    
+    /* Spacing */
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+}
+
+/* ==================== Global Styles ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Fira Code', monospace;
+    background-color: var(--bg-primary);
+    color: var(--neon-cyan);
+    min-height: 100vh;
+    overflow-x: hidden;
+    
+    /* Cyberpunk grid background pattern */
+    background-image: 
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: -1px -1px;
+}
+
+/* ==================== Container & Layout ==================== */
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-lg);
+}
+
+/* ==================== Header ==================== */
+header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    animation: fadeIn 1s ease-in;
+}
+
+.title {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 700;
+    color: var(--neon-cyan);
+    text-shadow: 
+        0 0 10px var(--neon-cyan),
+        0 0 20px var(--neon-cyan),
+        0 0 30px var(--neon-cyan),
+        0 0 40px var(--neon-cyan);
+    margin-bottom: var(--spacing-sm);
+    letter-spacing: 0.1em;
+}
+
+.title i {
+    margin-right: var(--spacing-sm);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.subtitle {
+    font-size: clamp(0.875rem, 2vw, 1.125rem);
+    color: var(--neon-green);
+    text-shadow: 0 0 5px var(--neon-green);
+    font-weight: 400;
+}
+
+/* ==================== Marquee Section ==================== */
+.marquee-section {
+    width: 100%;
+    margin-bottom: var(--spacing-xl);
+    position: relative;
+}
+
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: var(--spacing-lg) 0;
+    
+    /* Gradient fade edges */
+    mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 10%,
+        black 90%,
+        transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 10%,
+        black 90%,
+        transparent 100%
+    );
+}
+
+.marquee-content {
+    display: flex;
+    gap: var(--spacing-xl);
+    width: fit-content;
+    animation: scroll 30s linear infinite;
+}
+
+/* Pause animation on hover */
+.marquee-content:hover {
+    animation-play-state: paused;
+}
+
+.word {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    color: var(--neon-green);
+    text-shadow: 
+        0 0 10px var(--neon-green),
+        0 0 20px var(--neon-green),
+        0 0 30px var(--neon-green);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 8px;
+}
+
+.word:hover {
+    color: var(--neon-cyan);
+    text-shadow: 
+        0 0 15px var(--neon-cyan),
+        0 0 30px var(--neon-cyan),
+        0 0 45px var(--neon-cyan);
+    transform: scale(1.1);
+    background: rgba(0, 255, 245, 0.05);
+}
+
+.word:active {
+    transform: scale(0.95);
+}
+
+/* Speaking animation */
+.word.speaking {
+    color: var(--neon-pink);
+    text-shadow: 
+        0 0 20px var(--neon-pink),
+        0 0 40px var(--neon-pink),
+        0 0 60px var(--neon-pink);
+    animation: speakingPulse 0.5s ease-in-out infinite;
+}
+
+/* ==================== Keyframe Animations ==================== */
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* Move by exactly 50% for seamless loop */
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes speakingPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* ==================== Controls Section ==================== */
+.controls {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: var(--spacing-xl);
+}
+
+.speed-control {
+    background: var(--bg-secondary);
+    padding: var(--spacing-lg);
+    border-radius: 12px;
+    border: 2px solid var(--neon-cyan);
+    box-shadow: 
+        0 0 10px rgba(0, 255, 245, 0.3),
+        inset 0 0 10px rgba(0, 255, 245, 0.1);
+}
+
+.speed-control label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--neon-cyan);
+    margin-bottom: var(--spacing-md);
+    font-weight: 600;
+}
+
+.speed-control label i {
+    font-size: 1.5em;
+}
+
+/* Custom Range Slider */
+#speed-slider {
+    width: 100%;
+    height: 8px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: linear-gradient(
+        to right,
+        var(--neon-green) 0%,
+        var(--neon-cyan) 50%,
+        var(--neon-pink) 100%
+    );
+    outline: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: var(--spacing-sm);
+}
+
+#speed-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    background: var(--neon-cyan);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 
+        0 0 10px var(--neon-cyan),
+        0 0 20px var(--neon-cyan);
+    transition: all 0.3s ease;
+}
+
+#speed-slider::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    background: var(--neon-cyan);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 
+        0 0 10px var(--neon-cyan),
+        0 0 20px var(--neon-cyan);
+    transition: all 0.3s ease;
+}
+
+#speed-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 
+        0 0 15px var(--neon-cyan),
+        0 0 30px var(--neon-cyan);
+}
+
+#speed-slider::-moz-range-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 
+        0 0 15px var(--neon-cyan),
+        0 0 30px var(--neon-cyan);
+}
+
+.speed-indicators {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    color: var(--neon-green);
+    opacity: 0.8;
+}
+
+/* ==================== Footer ==================== */
+footer {
+    text-align: center;
+    font-size: clamp(0.75rem, 1.5vw, 1rem);
+    color: var(--neon-green);
+    opacity: 0.8;
+    animation: fadeIn 1s ease-in 0.5s backwards;
+}
+
+footer i {
+    margin-right: var(--spacing-sm);
+}
+
+/* ==================== Responsive Design ==================== */
+@media (max-width: 768px) {
+    .container {
+        padding: var(--spacing-md);
+    }
+    
+    .marquee-container {
+        padding: var(--spacing-md) 0;
+    }
+    
+    .word {
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+    }
+    
+    .speed-control {
+        padding: var(--spacing-md);
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .marquee-section {
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .controls {
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .word {
+        gap: var(--spacing-md);
+    }
+}
+
+/* ==================== Accessibility - Reduced Motion ==================== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .marquee-content {
+        animation: none;
+    }
+    
+    .word.speaking {
+        animation: none;
+    }
+}
+
+/* ==================== Focus Styles for Accessibility ==================== */
+.word:focus {
+    outline: 2px solid var(--neon-cyan);
+    outline-offset: 4px;
+}
+
+#speed-slider:focus {
+    outline: 2px solid var(--neon-cyan);
+    outline-offset: 4px;
+}

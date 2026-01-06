@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VocabDump - Vocabulary Learning Marquee</title>
+    
+    <!-- Google Fonts - Fira Code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="title">
+                <i class="fas fa-book-open"></i>
+                VocabDump
+            </h1>
+            <p class="subtitle">Learn vocabulary through continuous exposure</p>
+        </header>
+
+        <main>
+            <section class="marquee-section" aria-label="Scrolling vocabulary words">
+                <div class="marquee-container">
+                    <div class="marquee-content" id="marquee">
+                        <!-- Words will be dynamically inserted here -->
+                    </div>
+                </div>
+            </section>
+
+            <section class="controls">
+                <div class="speed-control">
+                    <label for="speed-slider">
+                        <i class="fas fa-gauge-high"></i>
+                        <span>Scroll Speed</span>
+                    </label>
+                    <input 
+                        type="range" 
+                        id="speed-slider" 
+                        min="10" 
+                        max="100" 
+                        value="50" 
+                        aria-label="Adjust scrolling speed"
+                        aria-valuemin="10"
+                        aria-valuemax="100"
+                        aria-valuenow="50"
+                    >
+                    <div class="speed-indicators">
+                        <span class="speed-label">Slow</span>
+                        <span class="speed-label">Fast</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>
+                <i class="fas fa-info-circle"></i>
+                Click any word to hear pronunciation | Hover to pause
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
