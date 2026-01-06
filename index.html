@@ -26,8 +26,24 @@
         </header>
 
         <main>
+            <section class="controls">
+                <div class="unit-selector">
+                    <label for="unit-select">
+                        <i class="fas fa-layer-group"></i>
+                        <span>Select Unit</span>
+                    </label>
+                    <select 
+                        id="unit-select" 
+                        aria-label="Select vocabulary unit"
+                    >
+                        <!-- Options will be dynamically inserted -->
+                    </select>
+                </div>
+            </section>
+
             <section class="marquee-section" aria-label="Scrolling vocabulary words">
                 <div class="marquee-container">
+                    <div class="center-line"></div>
                     <div class="marquee-content" id="marquee">
                         <!-- Words will be dynamically inserted here -->
                     </div>
