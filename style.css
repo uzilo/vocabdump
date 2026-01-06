@@ -147,7 +147,7 @@ header {
     text-align: center;
     line-height: 2;
     position: absolute;
-    bottom: 0;
+    top: 100%;
     animation: scrollVertical 30s linear infinite;
 }
 
@@ -157,7 +157,7 @@ header {
 }
 
 .word {
-    display: inline;
+    display: inline-block;
     font-size: clamp(1.5rem, 3vw, 2.5rem);
     font-weight: 600;
     color: var(--sky-blue);
@@ -169,6 +169,13 @@ header {
     transition: all 0.3s ease;
     user-select: none;
     padding: 0 0.3em;
+}
+
+.word-stream {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
 
 .word:hover {

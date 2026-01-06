@@ -1,27 +1,3 @@
-// ==================== Vocabulary Data ====================
-const VOCABULARY_UNITS = [
-    {
-        id: 1,
-        title: "Personality",
-        words: [
-            'Introvert', 'Extrovert', 'Charismatic', 'Ambivert', 'Empathetic',
-            'Optimistic', 'Pessimistic', 'Ambitious', 'Humble', 'Arrogant',
-            'Compassionate', 'Resilient', 'Stubborn', 'Diplomatic', 'Impulsive',
-            'Meticulous', 'Gregarious', 'Reserved', 'Assertive', 'Adaptable'
-        ]
-    },
-    {
-        id: 2,
-        title: "Technology",
-        words: [
-            'Algorithm', 'Database', 'Framework', 'API', 'Cloud',
-            'Encryption', 'Bandwidth', 'Protocol', 'Repository', 'Debugging',
-            'Compiler', 'Interface', 'Middleware', 'Virtualization', 'Blockchain',
-            'Neural', 'Quantum', 'Microservices', 'Container', 'DevOps'
-        ]
-    }
-];
-
 // ==================== Global Variables ====================
 let currentSpeech = null;
 let currentUnitId = 1;
@@ -48,39 +24,43 @@ function initializeMarquee() {
         animationFrameId = null;
     }
     
-    // Create the first set of words as a paragraph
-    const paragraph1 = document.createElement('p');
-    paragraph1.style.margin = '0';
-    paragraph1.style.padding = '0';
+    // Repeat words 6 times to create long content
+    const repeatedWords = [];
+    for (let i = 0; i < 6; i++) {
+        repeatedWords.push(...unit.words);
+    }
     
-    unit.words.forEach((word, index) => {
+    // Create the first word stream
+    const wordStream1 = document.createElement('div');
+    wordStream1.className = 'word-stream';
+    
+    repeatedWords.forEach((word, index) => {
         const wordElement = createWordElement(word);
-        paragraph1.appendChild(wordElement);
+        wordStream1.appendChild(wordElement);
         
         // Add space between words
-        if (index < unit.words.length - 1) {
-            paragraph1.appendChild(document.createTextNode(' '));
+        if (index < repeatedWords.length - 1) {
+            wordStream1.appendChild(document.createTextNode(' '));
         }
     });
     
-    // Create duplicate set for seamless loop
-    const paragraph2 = document.createElement('p');
-    paragraph2.style.margin = '0';
-    paragraph2.style.padding = '0';
+    // Create duplicate stream for seamless loop
+    const wordStream2 = document.createElement('div');
+    wordStream2.className = 'word-stream';
     
-    unit.words.forEach((word, index) => {
+    repeatedWords.forEach((word, index) => {
         const wordElement = createWordElement(word);
-        paragraph2.appendChild(wordElement);
+        wordStream2.appendChild(wordElement);
         
         // Add space between words
-        if (index < unit.words.length - 1) {
-            paragraph2.appendChild(document.createTextNode(' '));
+        if (index < repeatedWords.length - 1) {
+            wordStream2.appendChild(document.createTextNode(' '));
         }
     });
     
-    // Append both sets to the marquee
-    marqueeContent.appendChild(paragraph1);
-    marqueeContent.appendChild(paragraph2);
+    // Append both streams to the marquee
+    marqueeContent.appendChild(wordStream1);
+    marqueeContent.appendChild(wordStream2);
     
     // Start tracking active word
     updateActiveWord();
