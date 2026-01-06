@@ -130,6 +130,7 @@ function updateActiveWord() {
     function animate() {
         // Don't update if hovering (paused)
         if (!isHovering) {
+            // Cache container bounds (only needs to be recalculated if window resizes)
             const containerRect = marqueeContainer.getBoundingClientRect();
             const centerY = containerRect.top + containerRect.height / 2;
             
