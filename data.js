@@ -23,5 +23,47 @@ const VOCABULARY_UNITS = [
       "Compiler", "Interface", "Middleware", "Virtualization", "Blockchain",
       "Neural", "Quantum", "Microservices", "Container", "DevOps"
     ]
+  },
+  {
+    id: 3,
+    title: "Houses & Flats",
+    words: [
+      "Short-let accommodation",
+      "Studio flat",
+      "Fully furnished flat",
+      "Residential area",
+      "Suitable accommodation",
+      "Newly-built apartment",
+      "Spacious accommodation",
+      "Fully-fitted kitchen",
+      "Off-road parking",
+      "Dream home",
+      "Four-storey house",
+      "Spacious living room",
+      "Cosy study",
+      "Light, airy bedrooms",
+      "Overlook the garden",
+      "Basement flat",
+      "Granny flat",
+      "Dilapidated building",
+      "Draughty hall",
+      "Chilly corridor",
+      "Cramped room",
+      "Move into",
+      "Move out of",
+      "Do up",
+      "Add/Build an extension",
+      "Completely refurbished",
+      "Take out a mortgage",
+      "A place of my own",
+      "Affordable housing",
+      "House-warming party",
+      "Leave home",
+      "Feel homesick",
+      "Welcome someone home",
+      "Make yourself at home",
+      "Feel at home",
+      "Second home"
+    ]
   }
 ];
